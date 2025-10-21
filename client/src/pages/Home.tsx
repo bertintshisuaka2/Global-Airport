@@ -284,6 +284,35 @@ export default function Home() {
               </Card>
             )}
 
+            {/* Airport Location Photo */}
+            {selectedAirport && (
+              <Card className="overflow-hidden">
+                <CardHeader>
+                  <CardTitle>Airport Location Photo</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <div className="relative h-64 w-full">
+                    <img 
+                      src="/default-airport.jpg" 
+                      alt={`${selectedAirport.name} location`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = '/default-airport.jpg';
+                      }}
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                      <p className="text-white text-sm font-medium">
+                        {selectedAirport.municipality || selectedAirport.name}
+                      </p>
+                      <p className="text-white/80 text-xs">
+                        {selectedAirport.iso_country}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Weather Forecast */}
             {selectedAirport && weather && (
               <div>
