@@ -304,16 +304,28 @@ export default function Home() {
 
             {/* Welcome Message */}
             {!selectedAirport && (
-              <Card>
-                <CardContent className="py-12 text-center">
-                  <Plane className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-                  <h2 className="text-xl font-semibold mb-2">Welcome to {APP_TITLE}</h2>
-                  <p className="text-muted-foreground max-w-md mx-auto">
-                    Select a continent and country from the sidebar, or use the search to explore
-                    international airports around the world. View detailed weather forecasts and exact
-                    locations on the map.
-                  </p>
-                </CardContent>
+              <Card className="overflow-hidden">
+                <div className="relative h-80">
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: 'url(/welcome-airport.jpg)' }}
+                  >
+                    {/* Dark overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <CardContent className="relative h-full flex flex-col items-center justify-center text-center py-12">
+                    <Plane className="h-16 w-16 mx-auto mb-4 text-white drop-shadow-lg" />
+                    <h2 className="text-2xl font-bold mb-3 text-white drop-shadow-lg">Welcome to {APP_TITLE}</h2>
+                    <p className="text-white/95 text-lg max-w-2xl mx-auto drop-shadow-md">
+                      Select a continent and country from the sidebar, or use the search to explore
+                      international airports around the world. View detailed weather forecasts and exact
+                      locations on the map.
+                    </p>
+                  </CardContent>
+                </div>
               </Card>
             )}
           </div>
