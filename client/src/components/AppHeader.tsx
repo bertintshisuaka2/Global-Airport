@@ -27,7 +27,7 @@ export default function AppHeader() {
           <div className="relative">
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-2xl">
               <img 
-                src="/bertin-avatar.png" 
+                src="/bertin-avatar.jpg" 
                 alt="Bertin Tshisuaka" 
                 className="w-full h-full object-cover"
               />
@@ -46,7 +46,7 @@ export default function AppHeader() {
         <div className="relative">
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
             <img 
-              src="/bertin-avatar.png" 
+              src="/bertin-avatar.jpg" 
               alt="Bertin Tshisuaka" 
               className="w-full h-full object-cover"
             />
