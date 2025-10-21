@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { APP_TITLE } from "@/const";
+import AppHeader from "@/components/AppHeader";
 import AirportMap from "@/components/AirportMap";
 import WeatherDisplay from "@/components/WeatherDisplay";
 import { Loader2, Search, MapPin, Plane } from "lucide-react";
@@ -90,18 +91,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container py-4">
-          <div className="flex items-center gap-3">
-            <Plane className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">{APP_TITLE}</h1>
-          </div>
-          <p className="text-sm text-muted-foreground mt-1">
-            Explore international airports worldwide with real-time weather and location data
-          </p>
-        </div>
-      </header>
+      {/* Header with Airport Background and Branding */}
+      <AppHeader />
 
       <main className="container py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
