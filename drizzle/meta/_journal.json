@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1761004536833,
+      "tag": "0000_acoustic_power_pack",
+      "breakpoints": true
+    }
+  ]
 }

@@ -2,6 +2,15 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { z } from "zod";
+import {
+  getContinents,
+  getCountriesByContinent,
+  getAirportsByCountry,
+  getAirportById,
+  searchAirports,
+} from "./airportData";
+import { getWeatherForecast } from "./weatherService";
 
 export const appRouter = router({
   system: systemRouter,
@@ -17,12 +26,62 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  airports: router({
+    getContinents: publicProcedure.query(() => {
+      return getContinents();
+    }),
+
+    getCountries: publicProcedure
+      .input(z.object({ continent: z.string() }))
+      .query(({ input }) => {
+        return getCountriesByContinent(input.continent);
+      }),
+
+    getAirports: publicProcedure
+      .input(
+        z.object({
+          continent: z.string(),
+          country: z.string(),
+        })
+      )
+      .query(({ input }) => {
+        return getAirportsByCountry(input.continent, input.country);
+      }),
+
+    getAirportDetails: publicProcedure
+      .input(z.object({ id: z.string() }))
+      .query(({ input }) => {
+        const airport = getAirportById(input.id);
+        if (!airport) {
+          throw new Error("Airport not found");
+        }
+        return airport;
+      }),
+
+    search: publicProcedure
+      .input(
+        z.object({
+          query: z.string(),
+          limit: z.number().optional().default(50),
+        })
+      )
+      .query(({ input }) => {
+        return searchAirports(input.query, input.limit);
+      }),
+  }),
+
+  weather: router({
+    getForecast: publicProcedure
+      .input(
+        z.object({
+          latitude: z.number(),
+          longitude: z.number(),
+        })
+      )
+      .query(async ({ input }) => {
+        return await getWeatherForecast(input.latitude, input.longitude);
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
