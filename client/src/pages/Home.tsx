@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { APP_TITLE } from "@/const";
 import AppHeader from "@/components/AppHeader";
+import HeroSection from "@/components/HeroSection";
 import AirportMap from "@/components/AirportMap";
 import WeatherDisplay from "@/components/WeatherDisplay";
 import { Loader2, Search, MapPin, Plane } from "lucide-react";
@@ -90,9 +91,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundColor: '#fffef0' }}>
       {/* Header with Airport Background and Branding */}
       <AppHeader />
+      
+      {/* Hero Section with Airport Image */}
+      <HeroSection />
 
       <main className="container py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
