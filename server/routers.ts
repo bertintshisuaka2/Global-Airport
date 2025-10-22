@@ -2,6 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { getCityPhoto } from "./cityPhotos";
 import { z } from "zod";
 import {
   getContinents,
@@ -48,12 +49,15 @@ export const appRouter = router({
         return getAirportsByCountry(input.continent, input.country);
       }),
 
-    getAirportDetails: publicProcedure
+    getAirportById: publicProcedure
       .input(z.object({ id: z.string() }))
-      .query(({ input }) => {
-        const airport = getAirportById(input.id);
-        if (!airport) {
-          throw new Error("Airport not found");
+      .query(async ({ input }) => {
+        const airport = await getAirportById(input.id);
+        if (airport) {
+          return {
+            ...airport,
+            cityPhoto: getCityPhoto(airport.municipality, airport.id),
+          };
         }
         return airport;
       }),

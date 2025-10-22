@@ -39,7 +39,7 @@ export default function Home() {
   );
 
   // Fetch selected airport details
-  const { data: selectedAirport } = trpc.airports.getAirportDetails.useQuery(
+  const { data: selectedAirport } = trpc.airports.getAirportById.useQuery(
     { id: selectedAirportId },
     { enabled: !!selectedAirportId }
   );
@@ -293,7 +293,7 @@ export default function Home() {
                 <CardContent className="p-0">
                   <div className="relative h-64 w-full">
                     <img 
-                      src={`/africa-${(parseInt(selectedAirport.id) % 9) + 1}.${parseInt(selectedAirport.id) % 9 === 4 ? 'webp' : 'jpg'}`}
+                      src={selectedAirport.cityPhoto || `/africa-${(parseInt(selectedAirport.id) % 9) + 1}.${parseInt(selectedAirport.id) % 9 === 4 ? 'webp' : 'jpg'}`}
                       alt={`${selectedAirport.name} location`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
