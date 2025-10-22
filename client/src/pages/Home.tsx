@@ -293,7 +293,7 @@ export default function Home() {
                 <CardContent className="p-0">
                   <div className="relative h-64 w-full">
                     <img 
-                      src="/default-airport.jpg" 
+                      src={`/africa-${(parseInt(selectedAirport.id) % 9) + 1}.${parseInt(selectedAirport.id) % 9 === 4 ? 'webp' : 'jpg'}`}
                       alt={`${selectedAirport.name} location`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
