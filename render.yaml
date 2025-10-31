@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: global-airports
+    runtime: node
+    plan: free
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: VITE_APP_ID
+        value: proj_global_airports
+      - key: VITE_APP_TITLE
+        value: Global Airports
+      - key: VITE_APP_LOGO
+        value: https://placehold.co/40x40/3b82f6/ffffff?text=GA
+      - key: JWT_SECRET
+        generateValue: true
+      - key: VITE_OAUTH_PORTAL_URL
+        value: https://vida.butterfly-effect.dev
+      - key: OAUTH_SERVER_URL
+        value: https://vidabiz.butterfly-effect.dev
+      - key: VITE_ANALYTICS_ENDPOINT
+        value: https://umami.dev.ops.butterfly-effect.dev
+      - key: VITE_ANALYTICS_WEBSITE_ID
+        value: analytics_proj_global_airports
